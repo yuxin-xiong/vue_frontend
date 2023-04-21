@@ -21,13 +21,22 @@
         <el-menu :default-active="activeIndex" 
                   background-color=""  
                   class="el-menu-demo" mode="horizontal">
-          <el-menu-item index="1">登录</el-menu-item>
-          <el-menu-item index="2">注册</el-menu-item>
+          <el-menu-item index="1">
+            <router-link to="/home">首页</router-link>
+          </el-menu-item>
+          <el-menu-item index="2">
+            <router-link to="/login">登录</router-link>
+          </el-menu-item>
           <el-menu-item index="3">GitHub</el-menu-item>
         </el-menu>  
       </div></el-col>
     </el-row>
-</div>
+
+    <div class="web-title">
+        <h1>视觉行为识别系统</h1>
+        <p>Grounded Situation Recongnition System</p>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -35,9 +44,8 @@ export default {
   name: "Header",
   data() {
     return {
+      activeIndex:'1',
       keyWord:"",
-      msg: "视觉行为识别系统",
-      activeIndex: "1",
     };
   },
   methods: {
@@ -48,23 +56,44 @@ export default {
 };
 </script>
 <style lang="less" scoped>
-
+a{
+  text-decoration: none;
+}
 
 .header-container{
-  padding-top: 10px;
-  .search-text{
-  margin-left: 15%;
-  padding-top: 15px;
-  /deep/ .el-input__inner {
-    height: 50px;
-    font-size: large;
-    width:100%;
+    padding-top: 10px;
+    .search-text{
+    margin-left: 15%;
+    padding-top: 15px;
+    /deep/ .el-input__inner {
+      height: 50px;
+      font-size: large;
+      width:100%;
+    }
+  }
+
+}
+
+.web-title {
+  margin-left: 25%;
+  margin-right: 30%; 
+  margin-top:45px;
+  margin-bottom: 50px; 
+  line-height: 1.25em;
+  h1{
+    text-align: center;
+    color: #21b3b9;
+    letter-spacing: 5px;
+    font-size: 2.8em;
+    padding-bottom: 20px;
+    height: auto;
+  }
+  p{
+    text-align: right;
+    color: #030303;
+    font-size: 1.5em;
   }
 }
-
-}
-
-
 
 h1 {
   text-align: left;

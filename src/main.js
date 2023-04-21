@@ -6,13 +6,13 @@ import VueRouter from 'vue-router'
 import axios from 'axios'
 import Element from 'element-ui'
 import echarts from "echarts";
-// main.js
 import less from 'less'
 Vue.prototype.$echarts = echarts;
 import '../node_modules/element-ui/lib/theme-chalk/index.css'
 import '../src/assets/style.css'
 import './theme/index.css'
 
+import router from '@/router'
 Vue.use(Element)
 Vue.use(VueRouter)
 Vue.use(less)
@@ -20,14 +20,8 @@ Vue.config.productionTip = false
 
 Vue.prototype.$http = axios
 
-const router = new VueRouter({
-    routes: [
-        {path: "/App", component: App, meta: {title: "眼疾辅助诊断系统"},},
-    ],
-    mode: "history"
-})
 
-// // 全局注册组件
+//  全局注册组件
 Vue.component("App", App);
 
 /* eslint-disable no-new */
