@@ -19,7 +19,8 @@
   width: 100%;
   height: 100px;
   position: absolute;
-  bottom: -50%;
+  bottom: 0%;
+  transform: translate(0%,100%);
 }
 
 p {

@@ -20,9 +20,8 @@
                   :router=true 
                   menu-trigger="click" 
                   class="nav-menu" mode="horizontal">
-          <el-menu-item index="/home">首页</el-menu-item>
-          <el-menu-item index="/login">登录</el-menu-item>
-          <el-menu-item index="/github">GitHub</el-menu-item>
+          <el-menu-item index="/home/proimage">图片识别</el-menu-item>
+          <el-menu-item index="/home/provideo">视频识别</el-menu-item>
         </el-menu>
     </div>
   </div>

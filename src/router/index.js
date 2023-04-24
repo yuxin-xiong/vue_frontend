@@ -8,7 +8,7 @@ Vue.use(VueRouter)
 import HomeIndex from '@/components/home/HomeIndex.vue'
 import VideoContent from '@/components/home/VideoContent.vue'
 import ImageContent from '@/components/home/ImageContent.vue'
-
+import ResultIndex from '@/components/ResultIndex.vue'
 // 路由规则的数组
 const routes = [
   // 定义首页的路由规则
@@ -16,14 +16,15 @@ const routes = [
   { 
     path: '/home', component: HomeIndex,
     children:[
-      {path:'',component:HomeIndex},
+      {path:'',component:ImageContent},
       {path:'proimage',component:ImageContent},
       {path:'provideo',component:VideoContent},
     ] 
+  },
+  {
+    path:'/result-show',component:ResultIndex
   }
 
-  // 定义我的路由规则
-  // { path: '/user', component: User }
 ]
 
 // 创建路由实例对象
