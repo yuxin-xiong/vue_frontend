@@ -43,7 +43,7 @@
             </el-table-column>
             <el-table-column prop="color" label="颜色框" width="128px">
               <template slot-scope="scope">
-                <el-button :style="{ backgroundColor: 'rgb'+scope.row.color }"></el-button>
+                <el-button disabled round :style="{ backgroundColor: 'rgb'+scope.row.color }"></el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -58,20 +58,28 @@
 export default {
 	data() {
 		return {
+			resinfo:null,
 			src_url: '',
 			res_url: '',
 			srcList: [],
 			resList: [],
-			image_verb:'sitting',
-			imageInfo_list:[
-				{
-					role:'agent',
-					noun:'man',
-					color:'(255,255,0)',
-				}
-			],
+			image_verb:'',
+			imageInfo_list:[],
 			loading:false	
+			
 		};
+	},
+	props: ['data'],
+  created() {
+		console.log(this.data)
+  },
+	mounted(){
+		this.src_url=this.data.image_url;
+		this.res_url=this.data.draw_url;
+		this.image_verb=this.data.verb;
+		this.imageInfo_list=this.data.res_info;
+		this.srcList.push(this.data.image_url);
+		this.resList.push(this.data.draw_url);
 	},
 	components: {
 	},
@@ -132,6 +140,7 @@ export default {
 				font-size: 30px;
 			}
 			.res-table{
+				list-style: solid;
 				width: 500px; 
 				letter-spacing: 1px;
 				text-align: center;

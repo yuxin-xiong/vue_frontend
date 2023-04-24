@@ -2,27 +2,27 @@
   <!-- 顶部导航搜索栏 -->
   <div class="header-container">
     <div class="left-logo">
-        <img src="../assets/image/logo.jpg" width="60px" height="60px"/>
+      <img src="../assets/image/logo.jpg" width="60px" height="60px"/>
     </div>
     <div class="center-search">
-        <el-input type="text"
-                  v-model="keyWord" placeholder="请输入关键字"
-                  clearable
-                  class="input-form">
+      <el-input type="text"
+                v-model="keyWord" placeholder="请输入关键字"
+                clearable
+                class="input-form">
         <el-button type="primary" 
                   slot="append" 
                   icon="el-icon-search" 
                   @click="onSubmit">搜索</el-button>
-        </el-input>
+      </el-input>
     </div>
     <div class="right-nav">
-        <el-menu :default-active="activeIndex" 
-                  :router=true 
-                  menu-trigger="click" 
-                  class="nav-menu" mode="horizontal">
-          <el-menu-item index="/home/proimage">图片识别</el-menu-item>
-          <el-menu-item index="/home/provideo">视频识别</el-menu-item>
-        </el-menu>
+      <el-menu :default-active="activeIndex" 
+                :router=true 
+                menu-trigger="click" 
+                class="nav-menu" mode="horizontal">
+        <el-menu-item index="/home/proimage">图片识别</el-menu-item>
+        <el-menu-item index="/home/provideo">视频识别</el-menu-item>
+      </el-menu>
     </div>
   </div>
   

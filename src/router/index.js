@@ -22,7 +22,10 @@ const routes = [
     ] 
   },
   {
-    path:'/result-show',component:ResultIndex
+    path:'/result-show',
+    name:'ResultIndexShow', 
+    component:ResultIndex,  
+    props: true
   }
 
 ]

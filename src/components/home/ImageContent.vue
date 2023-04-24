@@ -50,14 +50,18 @@
 
 <script>
 // import MyImage from "@/components/MyImage.vue"
+import axios from 'axios'
 export default {
   data() {
     return {
+      server_url: "http://127.0.0.1:5000",      
       // url_1:'https://mms-graph.cdn.bcebos.com/activity/pc/shitu_b01.jpg'
       src_img_url:"",
       up_button_show:true,
       predict_button_show:false,
-      again_buttopn_show:false
+      again_buttopn_show:false,
+      responseData: null,
+      file:null,
     };
   },
   methods:{
@@ -83,18 +87,42 @@ export default {
       }
       return url;
     },
+    //从本地选择文件
     uploadFile(e){
       this.up_button_show=false;
       this.predict_button_show=true;
       this.again_buttopn_show=true;
-      let file = e.target.files[0];
-      this.src_img_url = this.$options.methods.getObjectURL(file);
-      console.log(this.src_img_url);
+      this.file = e.target.files[0];
+      console.log(this.file);
+      this.src_img_url = this.$options.methods.getObjectURL(this.file);
     },
+
     // 发送至后台开始预测
     startPredict(){
       console.log("startPredict");
-    }
+      let param = new FormData();
+      param.append("file",this.file,Date.now() + '.jpg');
+      let config={
+        headers:{"Content-Type": "multipart/form-data"}
+      };
+      axios.post(this.server_url + "/upload", param, config)
+           .then((response)=>{
+            // this.responseData=response;
+            console.log(response)
+            this.$router.push({name: 'ResultIndexShow', 
+                                params: {data: response.data}});
+           }).catch((error) => {
+             console.log(error);
+          });
+    },
+    notice1() {
+        this.$notify({
+          title: "预测失败",
+          message: "解析失败，请重新上传",
+          duration: 3000,
+          type: "fail",
+        });
+      },
   },
   components: {
     // MyImage,

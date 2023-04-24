@@ -23,8 +23,6 @@
       </div>
       <!-- 右边图像区 -->
       <div class="right-content"> 
-        <!-- <ImageContent></ImageContent>
-         -->
          <router-view></router-view>
       </div>
     </div>

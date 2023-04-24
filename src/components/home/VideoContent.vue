@@ -61,9 +61,11 @@ export default {
   name: 'MyImage',
   data() {
     return {
+      server_url: "http://127.0.0.1:5000",      
       src_img_url:"",
       upvdieo_button_show:true,
       predict_button_show:false,
+      file:null,
     };
   },
   created: function () {
@@ -99,6 +101,26 @@ export default {
       }
       return url;
     },
+    // 发送至后台开始预测
+    startPredict(){
+      console.log("startPredict");
+      console.log(this.file);
+
+      let param = new FormData();
+      param.append("file",this.file,this.file.name);
+      let config={
+        headers:{"Content-Type": "multipart/form-data"}
+      };
+      axios.post(this.server_url + "/upload", param, config)
+           .then((response)=>{
+            // this.responseData=response;
+            console.log(response)
+            this.$router.push({name: 'ResultIndexShow', 
+                                params: {data: response.data}});
+           }).catch((error) => {
+             console.log(error);
+          });
+    },
 
     //截图并显示 
     cutPicture() {
@@ -110,14 +132,13 @@ export default {
       canvas.height = video.videoHeight;
       canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
       const dataURL = canvas.toDataURL();
-      console.log(canvas);
       this.src_img_url = dataURL;
+
+      canvas.toBlob((blob) => {
+        this.file = new File([blob],  Date.now()+'.jpg', {type: "image/jpeg"});
+      });
     },
 
-    startPredict(){
-      // console.log("startPredict");
-      // console.log(this.src_img_url);
-    },
     // 上传文件
     upload_file(e) {
       this.url_1 = "";
