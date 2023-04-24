@@ -1,5 +1,5 @@
 <template>
-  <div id="Footer">
+  <div class="Footer">
     <p>{{ msg }}</p>
   </div>
 </template>
@@ -14,14 +14,12 @@
   };
 </script>
 <style scoped>
-#Footer {
-  /*background:#F2F6FC;*/
-  padding: 6px;
+.Footer{
   border-radius: 5px;
-  width: 80%;
-  height: 80px;
-  margin: 20px auto;
-  margin-top: 140px;
+  width: 100%;
+  height: 100px;
+  position: absolute;
+  bottom: -50%;
 }
 
 p {

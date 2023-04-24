@@ -14,7 +14,7 @@
                             style="border-radius: 3px 3px 0 0">
                     <div slot="error">
                       <div slot="placeholder" class="error">
-                        <el-button v-show="showbutton"
+                        <el-button v-show="!showbutton"
                           type="primary"
                           icon="el-icon-upload"
                           class="download_bt"
@@ -55,7 +55,7 @@
             <div
               v-loading="loading"
               element-loading-text="处理中,请耐心等待"
-              element-loading-spinner="el-icon-loading"
+              element-loading-spinner="el-icon- "
             >
               <el-image
                 :src="url_2"
@@ -193,7 +193,7 @@
       },
       // 上传文件
       upload_file(e) {
-
+        
         // this.percentage = 0;
         // this.dialogTableVisible = true;
         this.url_1 = "";

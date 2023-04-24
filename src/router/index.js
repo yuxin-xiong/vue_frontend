@@ -4,19 +4,21 @@ import VueRouter from 'vue-router'
 
 // 把 VueRouter 安装为 Vue 的插件
 Vue.use(VueRouter)
-import Home from '@/components/Home.vue'
-import MyImage from '@/components/MyImage.vue'
-import MyVideo from '@/components/MyVideo.vue'
+// import HomeTitle from '@/components/home/HomeTitle.vue'
+import HomeIndex from '@/components/home/HomeIndex.vue'
+import VideoContent from '@/components/home/VideoContent.vue'
+import ImageContent from '@/components/home/ImageContent.vue'
+
 // 路由规则的数组
 const routes = [
   // 定义首页的路由规则
   { path: '/', redirect:'/home' },
   { 
-    path: '/home', component: Home,
+    path: '/home', component: HomeIndex,
     children:[
-      {path:'',component:MyImage},
-      {path:'proimage',component:MyImage},
-      {path:'provideo',component:MyVideo}
+      {path:'',component:HomeIndex},
+      {path:'proimage',component:ImageContent},
+      {path:'provideo',component:VideoContent},
     ] 
   }
 
