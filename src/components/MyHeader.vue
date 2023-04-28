@@ -29,17 +29,50 @@
 </template>
 
 <script>
+import axios from 'axios';
+import EventBus from '../EventBus.js';
 export default{
     name: "MyHeader",
     data() {
         return {
+        server_url: "http://127.0.0.1:5000",      
         activeIndex:'1',
         keyWord:"",
         };
     },
     methods: {
         onSubmit() {
-            console.log("Hello world!");
+          // 当前路径在search-show
+          if (this.$route.path === '/search-show') {
+              axios.get(this.server_url+'/search', { params: { keyword: this.keyWord } })
+              .then(response => {
+                const data = response.data
+                const imagePathList = data.map(item => {
+                  return 'http://127.0.0.1:5000/static/images_512/' + item.image_path;
+                });
+
+                EventBus.$emit('data-updated', imagePathList);
+
+              }).catch(error => {
+                console.error(error);
+              });
+            } else {
+              // 其他路径
+              axios.get(this.server_url+'/search', { params: { keyword: this.keyWord } })
+              .then(response => {
+                // 请求成功的处理逻辑
+                const data = response.data
+                const imagePathList = data.map(item => {
+                  return 'http://127.0.0.1:5000/static/images_512/' + item.image_path;
+                });
+                this.$router.push({name: 'SearchIndexShow', 
+                                    params: {img_path_list: imagePathList}});
+              }).catch(error => {
+                // 请求失败的处理逻辑
+                console.error(error);
+              });
+            }
+    
         }
     }
 };

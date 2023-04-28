@@ -9,6 +9,7 @@ import HomeIndex from '@/components/home/HomeIndex.vue'
 import VideoContent from '@/components/home/VideoContent.vue'
 import ImageContent from '@/components/home/ImageContent.vue'
 import ResultIndex from '@/components/ResultIndex.vue'
+import SearchIndex from '@/components/SearchResult.vue'
 // 路由规则的数组
 const routes = [
   // 定义首页的路由规则
@@ -26,8 +27,13 @@ const routes = [
     name:'ResultIndexShow', 
     component:ResultIndex,  
     props: true
+  },
+  {
+    path:'/search-show',
+    name:'SearchIndexShow', 
+    component:SearchIndex,  
+    props: true
   }
-
 ]
 
 // 创建路由实例对象
