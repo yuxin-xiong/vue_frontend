@@ -16,6 +16,7 @@
                         style="display: none"
                         name="file"
                         type="file"
+                        accept=".png,.jpg,.jpeg"
                         @change="uploadFile"/>
               </el-button>
             </div>
@@ -40,6 +41,7 @@
               style="display: none"
               name="file"
               type="file"
+              accept=".png,.jpg,.jpeg"
               @change="uploadFile"/>
           </el-button>
         </div>
@@ -55,10 +57,9 @@ export default {
   data() {
     return {
       server_url: "http://127.0.0.1:5000",      
-      // url_1:'https://mms-graph.cdn.bcebos.com/activity/pc/shitu_b01.jpg'
       src_img_url:"",
       up_button_show:true,
-      predict_button_show:false,
+      predict_button_show:true,
       again_buttopn_show:false,
       responseData: null,
       file:null,
@@ -108,12 +109,19 @@ export default {
       axios.post(this.server_url + "/upload", param, config)
            .then((response)=>{
             // this.responseData=response;
-            console.log(response)
+            // console.log(response.data)
             this.$router.push({name: 'ResultIndexShow', 
                                 params: {data: response.data}});
            }).catch((error) => {
+            this.notice1()
              console.log(error);
           });
+      // axios.get(this.server_url + "/test")
+      //      .then((response)=>{
+      //         this.$router.push({name: 'ResultIndexShow', 
+      //                 params: {data: response.data}});
+      //      }
+      //      )
     },
     notice1() {
         this.$notify({

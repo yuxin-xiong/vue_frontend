@@ -1,6 +1,6 @@
 <template>
   <div class="posfix">
-    <!-- 首页中部标题背景栏 -->
+    <!-- 首页标题背景栏 -->
     <div class="title-container">
       <h1>视觉行为识别系统</h1>
       <p>Grounded Situation Recongnition System</p>
@@ -56,7 +56,7 @@ export default {
   font-family: Arial, "Microsoft YaHei";
   position: relative;
   // background-color: pink;
-  background-image: url("../../assets/image/shitu_b02.jpg");
+  background-image: url("../../assets/image/OIP.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: 50%, 50%;
@@ -65,7 +65,7 @@ export default {
     position: absolute;
     left: 50%;
     top: 6%;
-    color: #f3f7f7;
+    color: #575a5a;
     letter-spacing: 8px;
     font-size: 56px;
     height: auto;
@@ -77,7 +77,7 @@ export default {
     top: 20%;
     left: 50%;
     transform: translate(-30%);
-    color: #fefcfc;
+    color: #3a3939;
     font-size: 30px;
   }
 }

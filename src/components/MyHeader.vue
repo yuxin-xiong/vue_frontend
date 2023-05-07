@@ -47,32 +47,23 @@ export default{
               axios.get(this.server_url+'/search', { params: { keyword: this.keyWord } })
               .then(response => {
                 const data = response.data
-                const imagePathList = data.map(item => {
-                  return 'http://127.0.0.1:5000/static/images_512/' + item.image_path;
-                });
-
-                EventBus.$emit('data-updated', imagePathList);
-
+                EventBus.$emit('data-updated', data);
+                console.log("emit:",data)
               }).catch(error => {
                 console.error(error);
               });
-            } else {
+          } 
+          else {
               // 其他路径
               axios.get(this.server_url+'/search', { params: { keyword: this.keyWord } })
               .then(response => {
-                // 请求成功的处理逻辑
                 const data = response.data
-                const imagePathList = data.map(item => {
-                  return 'http://127.0.0.1:5000/static/images_512/' + item.image_path;
-                });
                 this.$router.push({name: 'SearchIndexShow', 
-                                    params: {img_path_list: imagePathList}});
+                                    params: {pro_data: data}});
               }).catch(error => {
-                // 请求失败的处理逻辑
                 console.error(error);
               });
-            }
-    
+          }
         }
     }
 };

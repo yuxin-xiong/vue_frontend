@@ -8,8 +8,8 @@ Vue.use(VueRouter)
 import HomeIndex from '@/components/home/HomeIndex.vue'
 import VideoContent from '@/components/home/VideoContent.vue'
 import ImageContent from '@/components/home/ImageContent.vue'
-import ResultIndex from '@/components/ResultIndex.vue'
-import SearchIndex from '@/components/SearchResult.vue'
+import RecognitionResult from '@/components/RecognitionResult.vue'
+import SearchResult from '@/components/SearchResult.vue'
 // 路由规则的数组
 const routes = [
   // 定义首页的路由规则
@@ -25,13 +25,13 @@ const routes = [
   {
     path:'/result-show',
     name:'ResultIndexShow', 
-    component:ResultIndex,  
+    component:RecognitionResult,  
     props: true
   },
   {
     path:'/search-show',
     name:'SearchIndexShow', 
-    component:SearchIndex,  
+    component:SearchResult,  
     props: true
   }
 ]

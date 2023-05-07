@@ -1,0 +1,51 @@
+{
+    "res_list": [
+        [
+            "eating_190.jpg",
+            "woman.n.01",
+            "hamburger.n.01",
+            "''",
+            "hand.n.01",
+            "outdoors.n.01"
+        ],
+        [
+            "eating_199.jpg",
+            "people.n.01",
+            "spaghetti.n.01",
+            "bowl.n.01",
+            "chopstick.n.01",
+            "cafeteria.n.01"
+        ],
+        [
+            "eating_215.jpg",
+            "woman.n.01",
+            "cake.n.03",
+            "plate.n.04",
+            "hand.n.01",
+            "''"
+        ],
+        [
+            "eating_218.jpg",
+            "woman.n.01",
+            "fish.n.01",
+            "plate.n.04",
+            "fork.n.01",
+            "table.n.02"
+        ],
+        [
+            "eating_220.jpg",
+            "male_child.n.01",
+            "''",
+            "dish.n.01",
+            "fork.n.01",
+            "table.n.02"
+        ]
+    ],
+    "roles_lable": [
+        "agent",
+        "food",
+        "container",
+        "tool",
+        "place"
+    ]
+}
