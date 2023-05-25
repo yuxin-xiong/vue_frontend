@@ -1,20 +1,21 @@
 <template>
 	<div class="search-result-container">
 		<div class="image-row" v-for="(row, index) in imageRows" :key="index">
-				<el-image v-for="(image, imgIndex) in row" 
-									:key="imgIndex" 
-									:src=getImagePath(image) 
-									class="image-item"
-									@click="openTooltip(image)">
-				</el-image>
+			<div style="flex:1;margin: 5px;height: 300px; " v-for="(image, imgIndex) in row" :key="imgIndex" > 
+					<el-popover placement="top-start" width="350" 
+											@show="openTooltip(image)" 
+											trigger="click">
+						<span style="font-size:20px;color:#2bd8ad" 
+									v-html="formattedString">
+						</span>
+						<el-image class="image-item" 
+											slot="reference" 
+											:src=getImagePath(image)  
+											:fit="'cover'">
+						</el-image>
+					</el-popover>
+			</div>
 		</div>
-		<el-dialog
-					:title="dialogTitle"
-					:visible.sync="dialogVisible"
-					width="30%">
-					<pre> {{ dialogInfo }}</pre>
-		</el-dialog>
-
 	</div>
 </template>
   
@@ -26,9 +27,8 @@ export default {
 	data() {
 		return {
 			my_data:null,
-			dialogInfo:null,
-			dialogVisible:false,
-			dialogTitle:null, 
+			popContentInfo:'',
+			popTitle:null, 
 		};
 	},
 	props: ['pro_data'],
@@ -50,6 +50,12 @@ export default {
 				rows.push(this.my_data.search_file_list.slice(i, i + imagesPerRow));
 			}
 			return rows;
+		},		
+		formattedString() {
+      return this.popContentInfo.split(',').map(item => {
+        const [key, value] = item.trim().split(':');
+        return `${key}: ${value}<br>`;
+      }).join('');
 		}
 	},
 	methods: {
@@ -59,7 +65,7 @@ export default {
 		openTooltip(image){
 			this.dialogInfo = null;
 			this.dialogVisible = true;
-			this.dialogTitle, this.dialogInfo = this.getImageInfo(image);
+			this.popTitle, this.popContentInfo = this.getImageInfo(image);
 		},
 		getImageInfo(image){
 			let result = this.my_data.search_file_info.find(item => item.file === image);
@@ -69,9 +75,10 @@ export default {
 			}, {});
 			let { file, ...newResult } = orderedRes;
 			if (result) {
+				console.log(orderedRes)
 				// 输出其他数据
 				let json_str=JSON.stringify(newResult, null, 4);
-				let cleanedString = json_str.replace(/['"]/g, '');
+				let cleanedString = json_str.replace(/[{}'"]/g, '');
 				return file,cleanedString;
 			} else {
 				console.log("File not found");
@@ -89,7 +96,7 @@ pre {
 	color: rgb(11, 175, 235);
 }
 .search-result-container {
-	width: 90%;
+	width: 80%;
 	margin-left: auto;
 	margin-right: auto;
 	.image-row {
@@ -100,8 +107,6 @@ pre {
 
 	.image-item {
 		flex: 1;
-		max-width: calc(25% - 10px);
-		margin: 5px;
 		height: 300px;
 	}
 }

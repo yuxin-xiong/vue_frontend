@@ -23,7 +23,7 @@
 				<div slot="header" class="res-header">
             <span>识别结果</span>		
 				</div>
-				<h1 class="res-verb">{{ 'Verb:'+ image_verb }}</h1>
+				<h1 class="res-verb">Verb:<span style="color:rgb(246, 101, 101)">{{ image_verb }}</span></h1>
 				<el-table
             :data="image_info"
             v-loading="loading"
@@ -33,14 +33,14 @@
             stripe
             border
             class="res-table"
-            :header-cell-style="{background:'#e6ebe9',fontFamily:'Georgia, serif',fontSize:'1.2em'}"
-            :cell-style="{color: '#8b500d', fontFamily: 'Times New Roman',fontSize:'1.2em'}"
+            :header-cell-style="{background:'#e6ebe9',fontFamily:'Georgia, serif',fontSize:'20px'}"
+            :cell-style="{color: '#000000', fontFamily: 'consolas ',fontSize:'20px'}"
           >
-            <el-table-column prop="role" label="语义角色" width="121px">
+            <el-table-column prop="role" label="语义角色" width="192px">
             </el-table-column>
-            <el-table-column prop="noun" label="实体名词" width="248px">
+            <el-table-column prop="noun" label="实体名词" width="200px">
             </el-table-column>
-            <el-table-column prop="color" label="颜色框" width="121px">
+            <el-table-column prop="color" label="颜色框" width="92px">
               <template slot-scope="scope">
                 <el-button disabled round :style="{ backgroundColor: 'rgb'+scope.row.color }"></el-button>
               </template>
@@ -54,10 +54,19 @@
 		</button>
 		<div  v-if="isExpanded" class="search-result-container">
 			<div class="image-row" v-for="(row, index) in imageRows" :key="index">
-				<div style="flex:1;margin: 5px;height: 300px; " v-for="(image, imgIndex) in row" :key="imgIndex" > 
-					<el-popover placement="top-start" width="250" @show="openTooltip(image)" trigger="click">
-						<span style="font-size:20px;color:#2bd8ad" v-html="formattedString"></span>
-						<el-image class="image-item" slot="reference" :src=getImagePath(image)  :fit="'cover'"></el-image>
+				<div  style="flex:1;margin: 5px;height: 300px; " 
+							v-for="(image, imgIndex) in row" :key="imgIndex" > 
+					<el-popover placement="top-start" width="250" 
+											@show="openTooltip(image)" 
+											trigger="click">
+						<span style="font-size:20px;color:#2bd8ad" 
+									v-html="formattedString">
+						</span>
+						<el-image class="image-item" 
+											slot="reference" 
+											:src=getImagePath(image)  
+											:fit="'cover'">
+						</el-image>
 					</el-popover>
 				</div>
 			</div>

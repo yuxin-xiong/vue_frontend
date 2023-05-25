@@ -4,6 +4,8 @@
       <el-card class="box-card">
         <div class="src-image" >
           <el-image :src="src_img_url"
+          :fit="'contain'"
+                    :preview-src-list="srcList"
                     style="width: 100%; height: 100%">
             <div slot="error" class="image-slot">
               <el-button  v-show="up_button_show"
@@ -12,6 +14,7 @@
                           class="upimage-button"
                           v-on:click="buttonUploadOne">
                 选择图片
+
                 <input  ref="upload_1"
                         style="display: none"
                         name="file"
@@ -58,6 +61,7 @@ export default {
     return {
       server_url: "http://127.0.0.1:5000",      
       src_img_url:"",
+      srcList:"",
       up_button_show:true,
       predict_button_show:true,
       again_buttopn_show:false,
@@ -154,9 +158,9 @@ export default {
       margin:0,auto;
       .src-image{
         position: absolute;
-        left: 3%;
-        width: 80%;
-        height: 90%;
+        left: 6%;
+        width: 75%;
+        height: 70%;
         margin:0,auto;
         background: #ffffff;
         box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);

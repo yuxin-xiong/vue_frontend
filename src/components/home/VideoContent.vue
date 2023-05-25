@@ -12,7 +12,9 @@
       </div>
       <!-- 图片区域 -->
       <div class="src-image">
-        <el-image :src="src_img_url" style="width: 100%; height: 95%">
+        <el-image :src="src_img_url" style="width: 100%; height: 95%" 
+                    :fit="'contain'"
+                    :preview-src-list="srcList">
           <div slot="error" class="image-slot">
             <i class="el-icon-picture-outline"></i>
           </div>
@@ -63,6 +65,7 @@ export default {
     return {
       server_url: "http://127.0.0.1:5000",      
       src_img_url:"",
+      srcList:[],
       upvdieo_button_show:true,
       predict_button_show:false,
       file:null,
@@ -133,7 +136,7 @@ export default {
       canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
       const dataURL = canvas.toDataURL();
       this.src_img_url = dataURL;
-
+      this.srcList.push( dataURL);
       canvas.toBlob((blob) => {
         this.file = new File([blob],  Date.now()+'.jpg', {type: "image/jpeg"});
       });
@@ -196,7 +199,7 @@ export default {
   .box-card {
     position: relative;
     width: 80%;
-    height: 1000px;
+    height: 800px;
     border-radius: 8px;
     .video-player{
       position: absolute;
@@ -207,10 +210,10 @@ export default {
     .src-image {
 
       position: absolute;
-      left: 3%;
-      top: 40%;
-      width: 80%;
-      height: 58%;
+      left: 16%;
+      top: 50%;
+      width: 60%;
+      height: 45%;
       background: #ffffff;
       box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
       .el-icon-picture-outline{

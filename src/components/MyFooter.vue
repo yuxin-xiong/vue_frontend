@@ -18,9 +18,9 @@
   border-radius: 5px;
   width: 100%;
   height: 100px;
-  position: absolute;
+  position: relative;
   bottom: 0%;
-  transform: translate(0%,100%);
+  transform: translate(0%,200%);
 }
 
 p {
